@@ -213,21 +213,30 @@
 
     <script>
       function sendData() {
-          var namaLengkap = document.getElementById('namaLengkap').value;
-          var alamatLengkap = document.getElementById('alamatLengkap').value;
-          var oneTheSpot = document.getElementById('oneTheSpot').value;
-          var keluhan = document.getElementById('keluhan').value;
+          // Ambil nilai input dari form
+          var namaLengkap = document.getElementById("namaLengkap").value.trim();
+          var alamatLengkap = document.getElementById("alamatLengkap").value.trim();
+          var oneTheSpot = document.getElementById("oneTheSpot").value.trim();
+          var keluhan = document.getElementById("keluhan").value.trim();
   
-          var message = 'Nama Lengkap: ' + namaLengkap + '%0AAlamat Lengkap: ' + alamatLengkap + '%0ANo WA/Telfon: ' + noWa + '%0AOne The Spot/Teken: ' + oneTheSpot + '%0AKeluhan: ' + keluhan;
+          // Validasi input
+          if (namaLengkap === "" || alamatLengkap === "" || oneTheSpot === "" || keluhan === "") {
+              alert("Harap isi semua kolom formulir secara lengkap trima kasih.");
+              return;
+          }
   
-          // Menggunakan format URL untuk membuka WhatsApp
-          var waUrl = 'https://wa.me/6285732931917' + noWa + '?text=' + encodeURIComponent(message);
+          // Format pesan WhatsApp
+          var whatsappMessage = "Nama Lengkap: " + namaLengkap + "%0a";
+          whatsappMessage += "Alamat Lengkap: " + alamatLengkap + "%0a";
+          whatsappMessage += "One The Spot/Teken: " + oneTheSpot + "%0a";
+          whatsappMessage += "Keluhan: " + keluhan;
   
-          // Membuka WhatsApp
-          window.open(waUrl, '_blank');
+          // Buat URL WhatsApp dengan pesan yang telah diformat
+          var whatsappUrl = "https://wa.me/6285732931917" + encodeURIComponent(whatsappMessage);
+  
+          // Buka link WhatsApp
+          window.location.href = whatsappUrl;
       }
-
-      
   </script>
   
   </body>
